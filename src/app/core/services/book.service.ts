@@ -4,7 +4,9 @@ import { BaseHttpService } from "./base-http.service";
 import { Book } from "../interfaces/Book";
 import { Observable } from "rxjs";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class BookService extends BaseHttpService {
 
     getBooks(): Observable<Book[]> {

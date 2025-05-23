@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { BookService } from '../../../core/services/book.service';
-import { BookStateService } from '../../../core/services/book-state.service';
+import { HomeStateService } from '../../../core/services/home-state.service';
 import { BookCardComponent } from '../../components/book-card/book-card.component';
 
 @Component({
@@ -9,8 +9,8 @@ import { BookCardComponent } from '../../components/book-card/book-card.componen
   imports: [BookCardComponent],
   templateUrl: './home-page.component.html',
   styles: ``,
-  providers: [BookService, BookStateService],
+  providers: [BookService, HomeStateService],
 })
 export class HomePageComponent {
-  bookState = inject(BookStateService);
+  bookState = inject(HomeStateService);
 }

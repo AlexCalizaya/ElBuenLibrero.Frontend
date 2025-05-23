@@ -1,6 +1,6 @@
 import { Book } from "./Book";
 
-export interface State {
+export interface HomeState {
     books: Book[];
     status: 'loading' | 'success' | 'error';
 }

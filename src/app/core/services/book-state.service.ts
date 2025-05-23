@@ -1,25 +1,25 @@
 import { inject, Injectable } from "@angular/core";
-import { State } from "../interfaces/State";
-import { signalSlice } from 'ngxtension/signal-slice';
 import { BookService } from "./book.service";
-import { map } from "rxjs";
-import { Book } from "../interfaces/Book";
-
+import { BookState } from "../interfaces/BookState";
+import { signalSlice } from "ngxtension/signal-slice";
+import { map, Observable, switchMap } from "rxjs";
 @Injectable()
 export class BookStateService {
-    private bookService = inject(BookService);
-    
-    private initialState: State = {
-        books: [],
-        status: 'loading' as const,
-    };
+  private bookService = inject(BookService);
 
-    state = signalSlice({
-        initialState: this.initialState,
-        sources: [
-            this.bookService
-            .getBooks()
-            .pipe(map((books : Book[]) => ({ books, status: 'success' as const })))
-        ]  
-    });
+  private initialState: BookState = {
+    book: null,
+    status: 'loading' as const,
+  };
+
+  state = signalSlice({
+    initialState: this.initialState,
+    actionSources: {
+      getById: (_state, $: Observable<number>) =>
+        $.pipe(
+          switchMap((id) => this.bookService.getBook(id)),
+          map((data) => ({ book: data, status: 'success' as const })),
+        ),
+    },
+  });
 }
