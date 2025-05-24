@@ -6,3 +6,8 @@ export interface Book {
   price: number;
   image: string;
 }
+
+export interface BookCart {
+    book: Book;
+    quantity: number;
+}

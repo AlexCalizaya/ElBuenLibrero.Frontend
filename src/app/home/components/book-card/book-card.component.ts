@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Book } from '../../../core/interfaces/Book';
 import { RouterLink } from '@angular/router';
 
@@ -11,4 +11,9 @@ import { RouterLink } from '@angular/router';
 })
 export class BookCardComponent {
   @Input() book!: Book;
+  @Output() addToCart = new EventEmitter<Book>();
+
+  add(event: Event) {
+    this.addToCart.emit(this.book);
+  }
 }

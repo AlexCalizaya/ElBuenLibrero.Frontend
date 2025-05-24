@@ -2,7 +2,7 @@
     <div class="text-center">Cargando...</div>  
 }
 @else {
-    <section class="mt-10 bg-gray-100 md:py-16 dark:bg-gray-950 antialiased">
+    <section class="mt-5 bg-neutral-100 md:py-16 dark:bg-neutral-950 antialiased">
     <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
       <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
         <div class="shrink-0 max-w-md lg:max-w-lg mx-auto">
@@ -21,7 +21,7 @@
           </div>
           <div class="py-2 sm:gap-4 sm:items-center sm:flex sm:mt-4">
             <a
-              href="#"
+              (click)="addToCart()"
               title=""
               class="flex items-center justify-center py-2.5 px-5 text-sm font-medium rounded-md text-white bg-blue-700 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 "
               role="button"

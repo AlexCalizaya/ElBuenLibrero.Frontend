@@ -6,4 +6,9 @@ body {
   @apply bg-white text-black dark:bg-black dark:text-white
 }
 
+html {
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
 
