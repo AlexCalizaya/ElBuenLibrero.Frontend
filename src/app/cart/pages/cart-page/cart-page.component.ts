@@ -2,17 +2,20 @@ import { Component, inject } from '@angular/core';
 import { CartCardComponent } from "../../components/cart-card/cart-card.component";
 import { CartStateService } from '../../../core/services/cart-state.service';
 import { BookCart } from '../../../core/interfaces/Book';
-import { CurrencyPipe } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
+import { ClientDataModalComponent } from '../../components/client-data-modal/client-data-modal.component';
 
 @Component({
   selector: 'app-cart-page',
   standalone: true,
-  imports: [CartCardComponent, CurrencyPipe],
+  imports: [CartCardComponent, CurrencyPipe, ClientDataModalComponent, CommonModule],
   templateUrl: './cart-page.component.html',
   styles: ``
 })
 export class CartPageComponent {
   cartState = inject(CartStateService).state;
+
+  isModalOpen = false;
 
   onRemove(id: number) {
     this.cartState.remove(id);
@@ -30,5 +33,13 @@ export class CartPageComponent {
       ...book,
       quantity: book.quantity - 1,
     });
+  }
+
+  openFinishModal() {
+    this.isModalOpen = true;
+  }
+
+  closeFinishModal() {
+    this.isModalOpen = false;
   }
 }
