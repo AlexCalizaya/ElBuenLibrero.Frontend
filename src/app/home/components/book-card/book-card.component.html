@@ -7,7 +7,15 @@
             <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{{book.name}}</h5>
         </a>
         <div class="flex items-center py-2">
-            <span class="text-sm text-gray-900 dark:text-white">{{book.stock}} unidades disponibles</span>
+            @if (book.stock === 1){
+                <span class="text-sm text-gray-900 dark:text-white">¡Solo queda {{book.stock}} unidad disponible!</span>
+            }
+            @else if (1 < book.stock && book.stock <= 5){
+                <span class="text-sm text-gray-900 dark:text-white">¡Quedan {{book.stock}} unidades disponibles!</span>
+            }
+            @else {
+                <span class="text-sm text-gray-900 dark:text-white">{{book.stock}} unidades disponibles</span>
+            }
         </div>
         <div class="flex items-center justify-between gap-2">
             <span class="text-lg font-bold text-gray-900 dark:text-white">S/{{book.price}}</span>

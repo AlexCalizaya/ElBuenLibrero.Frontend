@@ -1,0 +1,10 @@
+.modal-scrollable-content {
+  max-height: 100vh; 
+  overflow-y: auto;    
+  scrollbar-width: none; 
+  -ms-overflow-style: none;
+}
+
+.modal-scrollable-content::-webkit-scrollbar {
+  display: none;
+}

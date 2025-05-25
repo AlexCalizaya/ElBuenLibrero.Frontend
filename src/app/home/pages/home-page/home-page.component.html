@@ -5,7 +5,9 @@
     <div class="mx-auto max-w-screen-xl py-5 px-20 md:px-10 xl:px-5">
         <div class="grid grid-cols-1 items-center gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             @for (book of bookState.state().books; track book) {
-                <app-book-card [book]="book" (addToCart)="addToCart($event)"/>
+                @if (book.stock > 0) {
+                    <app-book-card [book]="book" (addToCart)="addToCart($event)"/>
+                }
             }
         </div>
     </div>
