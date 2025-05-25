@@ -13,7 +13,10 @@ export class BookService extends BaseHttpService {
         return this.http.get<Book[]>(this.apiBookUrl);
     }
 
-    getBook(id: number): Observable<Book> {
-        return this.http.get<Book>(`${this.apiBookUrl}/${id}`);
+    getBookById(id: number): Observable<Book> {
+    return this.http.get<Book>(`${this.apiBookUrl}/getById`, {
+        params: { id: id }
+    });
     }
+
 }

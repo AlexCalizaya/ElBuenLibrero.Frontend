@@ -5,8 +5,13 @@
     <div class="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
       <div class="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
         <div class="space-y-6">
-            @for (cartItem of cartState.books(); track cartItem.book.id) {
-                <app-cart-card class="block" [bookCartItem]="cartItem" (onRemove)="onRemove($event)" (onIncrease)="onIncrease($event)" (onDecrease)="onDecrease($event)" />
+            @if (cartState.books().length > 0) {
+                @for (cartItem of cartState.books(); track cartItem.book.id) {
+                    <app-cart-card class="block" [bookCartItem]="cartItem" (onRemove)="onRemove($event)" (onIncrease)="onIncrease($event)" (onDecrease)="onDecrease($event)" />
+                }
+            }
+            @else {
+                <div class="text-center">No tienes ningún libro en tu carrito por el momento.</div>
             }
         </div>
       </div>

@@ -17,7 +17,7 @@ export class BookStateService {
     actionSources: {
       getById: (_state, $: Observable<number>) =>
         $.pipe(
-          switchMap((id) => this.bookService.getBook(id)),
+          switchMap((id) => this.bookService.getBookById(id)),
           map((data) => ({ book: data, status: 'success' as const })),
         ),
     },
