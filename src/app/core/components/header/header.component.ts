@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CartStateService } from '../../services/cart-state.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BookService } from '../../services/book.service';
@@ -19,7 +19,8 @@ export class HeaderComponent {
 
   constructor(
     private fb: FormBuilder, 
-    private bookService: BookService) 
+    private bookService: BookService,
+    private router: Router)
     {
       this.searchForm = this.fb.group({
         docType: ['I'],
@@ -29,11 +30,15 @@ export class HeaderComponent {
 
   onEnter() {
     const { docType, searchTerm } = this.searchForm.value;
-    if (!searchTerm) return;
+    if (!searchTerm) {this.homeState.getBooks(); return} ;
     if (docType === 'I') {
       this.homeState.getByISBN(searchTerm)
     } else if (docType === 'N') {
       this.homeState.getByName(searchTerm)
     }
+  }
+
+  refresh() {
+    this.homeState.getBooks();
   }
 }

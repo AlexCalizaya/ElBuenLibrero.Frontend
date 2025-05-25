@@ -71,12 +71,38 @@
                     </div>
                     <div>
                         <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Número de teléfono</label>
-                        <input formControlName="phone" type="text" name="phone" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Número" required="">
+                        <input
+                            formControlName="phone"
+                            type="text"
+                            name="phone"
+                            id="phone"
+                            maxlength="9"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="Número"
+                            required
+                        />
+                        <div *ngIf="docForm.get('phone')?.invalid && (docForm.get('phone')?.touched || docForm.get('phone')?.dirty)" class="text-red-600 text-sm mt-1">
+                            <div *ngIf="docForm.get('phone')?.errors?.['required']">El número es obligatorio.</div>
+                            <div *ngIf="docForm.get('phone')?.errors?.['pattern']">Debe tener 9 dígitos e iniciar con 9.</div>
+                        </div>
                     </div>
                     <div>
                         <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo</label>
-                        <input formControlName="email" type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Correo" required="">
+                        <input
+                            formControlName="email"
+                            type="email"
+                            name="email"
+                            id="email"
+                            placeholder="Correo"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            required
+                        />
+                        <div *ngIf="docForm.get('email')?.invalid && (docForm.get('email')?.touched || docForm.get('email')?.dirty)" class="text-red-600 text-sm mt-1">
+                            <div *ngIf="docForm.get('email')?.errors?.['required']">El correo es obligatorio.</div>
+                            <div *ngIf="docForm.get('email')?.errors?.['email']">Debe ser un correo válido.</div>
+                        </div>
                     </div>
+
                     <div>
                         <label for="payment" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Medio de pago</label>
                         <select formControlName="paymentMethod" id="payment" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">

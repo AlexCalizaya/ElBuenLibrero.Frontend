@@ -35,7 +35,11 @@ export class HomeStateService {
                 switchMap((isbn) => this.bookService.getBookByISBN(isbn)),
                 map((data) => ({ books: data, status: 'success' as const })),
             ),
-            
+            getBooks: (_state, $: Observable<void>) =>
+            $.pipe(
+                switchMap(() => this.bookService.getBooks()),
+                map((data) => ({ books: data, status: 'success' as const })),
+            ),          
         },  
     });
 

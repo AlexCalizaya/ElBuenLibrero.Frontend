@@ -7,6 +7,7 @@ import { Client } from '../../../core/interfaces/Client';
 import { BookCart } from '../../../core/interfaces/Book';
 import { Purchase } from '../../../core/interfaces/Purchase';
 import { Router } from '@angular/router';
+import { HomeStateService } from '../../../core/services/home-state.service';
 
 @Component({
   selector: 'app-client-data-modal',
@@ -19,7 +20,7 @@ export class ClientDataModalComponent implements OnInit{
   @Output() close = new EventEmitter<void>();
   @Input() isModalOpen!: boolean;
   cartState = inject(CartStateService).state;
-  
+  homeState = inject(HomeStateService).state;
   docForm!: FormGroup;
 
   constructor(
@@ -69,7 +70,7 @@ export class ClientDataModalComponent implements OnInit{
   if (this.docForm.valid) {
     const formData = this.docForm.value;
 
-    const bookList: BookCart[] = this.cartState.books(); // O como accedas al estado
+    const bookList: BookCart[] = this.cartState.books();
 
     const client: Client = {
       id: 0,
@@ -94,6 +95,7 @@ export class ClientDataModalComponent implements OnInit{
         alert('Compra finalizada! Gracias por su compra :)');
         this.cartState.clear();
         this.closeModal();
+        this.homeState.getBooks();
         this.router.navigate(['/']);
       },
       error: (error) => {
