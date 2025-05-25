@@ -11,7 +11,7 @@ import { Book } from '../../../core/interfaces/Book';
   imports: [BookCardComponent],
   templateUrl: './home-page.component.html',
   styles: ``,
-  providers: [BookService, HomeStateService],
+  providers: [],
 })
 export class HomePageComponent {
   cartState = inject(CartStateService).state;

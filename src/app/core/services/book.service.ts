@@ -19,4 +19,16 @@ export class BookService extends BaseHttpService {
     });
     }
 
+    getBookByISBN(isbn: string): Observable<Book[]> {
+        return this.http.get<Book[]>(`${this.apiBookUrl}/getByISBN`, {
+            params: { isbn: isbn }
+        });
+    }
+
+    getBookByName(name: string): Observable<Book[]> {
+        return this.http.get<Book[]>(`${this.apiBookUrl}/getByName`, {
+            params: { name: name }
+        });
+    }
+
 }

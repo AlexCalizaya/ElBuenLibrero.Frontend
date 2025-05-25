@@ -2,10 +2,8 @@ import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular
 import { CartStateService } from '../../../core/services/cart-state.service';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ClientService } from '../../../core/services/client.service';
 import { OrderService } from '../../../core/services/order.service';
 import { Client } from '../../../core/interfaces/Client';
-import { Order } from '../../../core/interfaces/Order';
 import { BookCart } from '../../../core/interfaces/Book';
 import { Purchase } from '../../../core/interfaces/Purchase';
 import { Router } from '@angular/router';

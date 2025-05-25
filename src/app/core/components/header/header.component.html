@@ -4,44 +4,27 @@
       <img src="https://w7.pngwing.com/pngs/360/232/png-transparent-computer-icons-the-book-thief-book-angle-rectangle-curriculum.png" class="h-8" alt="El Buen Librero Logo" />
       <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">El Buen Librero</span>
   </a>
-  <div class="flex md:order-1">
-    <div>
-      <button id="dropdownDefault" data-dropdown-toggle="dropdown" class="mx-2 inline-flex items-center px-3 py-2 text-sm font-normal text-center text-gray-600 bg-gray-200 rounded-lg hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-300 dark:focus:ring-gray-700">
-        Búsqueda por
-        <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-        </svg>
-      </button>
-      <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
-        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
-          <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">New branch</a>
-          </li>
-          <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Rename</a>
-          </li>
-          <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Delete</a>
-          </li>
-        </ul>
-      </div>  
-    </div>
-    <button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search" aria-expanded="false" class="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 me-1">
-      <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-      </svg>
-      <span class="sr-only">Search</span>
-    </button>
-    <div class="relative hidden md:block">
-      <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-        </svg>
-        <span class="sr-only">Search icon</span>
+  <form [formGroup]="searchForm" (ngSubmit)="onEnter()">
+    <div class="flex md:order-1">
+      <div>
+        <div class="mr-2">
+          <select id="doc-type" formControlName="docType" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+          <option value="I">ISBN</option>
+          <option value="N">Nombre</option>
+          </select>
+        </div>
       </div>
-      <input type="text" id="search-navbar" class="block w-full p-2 ps-10 text-sm text-black border border-gray-300 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-black dark:placeholder-gray-300 dark:text-white" placeholder="Busca...">
+      <div class="relative hidden md:block">
+        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+          <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+          </svg>
+          <span class="sr-only">Search icon</span>
+        </div>
+        <input formControlName="searchTerm" type="text" id="search-navbar" class="block w-full p-2 ps-10 text-sm text-black border border-gray-300 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-black dark:placeholder-gray-300 dark:text-white" placeholder="Busca..." (keydown.enter)="onEnter()">
+      </div>
     </div>
-  </div>
+  </form>
     <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-2" id="navbar-search">
       <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
         <li>
@@ -70,7 +53,7 @@
 
             @if (cartState.count() > 0) {
               <span
-                class="absolute bg-green-600 size-6 rounded-full flex items-center justify-center -right-3"
+                class="absolute bg-green-600 text-white size-6 rounded-full flex items-center justify-center -right-3"
                 >{{ cartState.count() }}</span
               >
             }
